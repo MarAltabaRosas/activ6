@@ -1,1 +1,23 @@
-<p>user-card works!</p>
+<div class="card shadow p-3">
+    <img class="rounded-circle" src= {{miUser?.image}}>
+    <h5 class="text-center p-2">{{miUser?.first_name}} {{miUser?.last_name}}</h5>
+    <div class="d-flex justify-content-around text-center p-1">
+        <div>        
+        <a class="link-dark text-decoration-none" href="#" [routerLink]="['/user', miUser?._id]">
+            <img src="/assets/search.svg" width="40" height="40">
+            <p>Ver detalles</p></a>
+        </div>
+
+        <div>        
+        <a class="link-dark text-decoration-none" href="#" [routerLink]="['/updateuser', miUser?._id]">
+            <img class="justify-content-center" src="/assets/update.svg" width="40" height="40">
+            <p>Actualizar</p></a>
+        </div>
+
+        <div>        
+        <a class="link-dark text-decoration-none" href="#" [routerLink]="['/home']">
+            <img src="/assets/delete.svg" width="40" height="40">
+            <p>Borrar</p></a>
+        </div>
+    </div>
+</div>
