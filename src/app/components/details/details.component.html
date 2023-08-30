@@ -15,9 +15,9 @@
         <p>{{oneUser?.email}}</p>
     </div>  
     <div class="mt-5">
-        <button class="btn btn-outline-dark p-4 me-2">Eliminar</button>
-        <a class="btn btn-outline-dark p-4 me-2" [routerLink]="['/updateuser', oneUser?._id]">Actualizar</a>
-        <a class="btn btn-outline-dark p-4 me-2" [routerLink]="['/home']">Volver a listado</a>
+        <button class="btn btn-outline-dark p-4" (click)="deleteUser(oneUser?.id)">Eliminar</button>
+        <a class="btn btn-outline-dark p-4" [routerLink]="['/updateuser', oneUser?._id]">Actualizar</a>
+        <a class="btn btn-outline-dark p-4" [routerLink]="['/home']">Volver a listado</a>
     </div> 
 </div>
 

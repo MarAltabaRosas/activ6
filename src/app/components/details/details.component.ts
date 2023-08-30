@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user.interface';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -12,27 +12,24 @@ export class DetailsComponent {
 
   activatedRoute = inject(ActivatedRoute)
   usersServices = inject(UsersService);
+  router = inject(Router);
   oneUser!: User | any;
-
-
-  /* ngOnInit(): void{
-    this.activatedRoute.params.subscribe((params:any) => {
-      let id = String(params.iduser);
-
-      this.oneUser = this.usersServices.getById(id).subscribe
-      ((response) => {
-        console.log(response)
-      });
-    })
-  } */
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(async(params:any)=>{
       let id = String(params.iduser)
-      console.log(id)
 
       this.oneUser = await this.usersServices.getById(id)
     })
+  }
+
+  async deleteUser(id: string): Promise<void> {
+    alert(`¿Deseas borrar el ususario ${this.oneUser.first_name} ${this.oneUser.last_name}?`)
+    let response = await this.usersServices.delete(this.oneUser._id)
+    if(response) {
+      alert('Usuario borrado correctamente')
+      this.router.navigate(['/home'])
+    }
   }
 
 }

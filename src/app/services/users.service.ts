@@ -32,7 +32,9 @@ export class UsersService {
     return lastValueFrom(this.httpClient.put)
   } */
 
-  //delete(){}
+  delete(id: String): Promise<any>{
+    return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}/${id}`))
+  }
 
 
 }

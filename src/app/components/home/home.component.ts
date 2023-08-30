@@ -12,20 +12,6 @@ export class HomeComponent {
   arrUsers: User[] = [];
   usersService = inject(UsersService);
 
-  /* ngOnInit(){
-    
-    this.usersService.getAll()
-      .then((response)=>{
-        this.arrUsers = response.results;
-        
-      })
-      .catch((error)=>{
-        console.log(error);
-      })
-    
-      
-  } */
-
   async ngOnInit(): Promise<void>{
     try{
       let response = await this.usersService.getAll()

@@ -14,7 +14,7 @@
             <p>Actualizar</p></a>
         </div>
 
-        <div>        
+        <div (click)="deleteUser(miUser?._id)">        
         <a class="link-dark text-decoration-none" href="#" [routerLink]="['/home']">
             <img src="/assets/delete.svg" width="40" height="40">
             <p>Borrar</p></a>
