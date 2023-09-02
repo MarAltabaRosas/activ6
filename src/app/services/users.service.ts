@@ -12,10 +12,8 @@ export class UsersService {
 
   constructor() { }
 
-  getAll(): Promise<any> {
-
-    return lastValueFrom(this.httpClient.get<any>(this.baseUrl))
-
+  getAll(page: number): Promise<any> {
+      return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}?page=${page}`))     
   }
 
   getById(id: string): Promise<any>{
