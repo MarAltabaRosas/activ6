@@ -1,7 +1,7 @@
 <div class="card shadow p-3">
     <img class="rounded-circle" src= {{miUser?.image}}>
     <h5 class="text-center p-2">{{miUser?.first_name}} {{miUser?.last_name}}</h5>
-    <div class="d-flex justify-content-around text-center p-1">
+    <div class="d-flex justify-content-around text-center p-1 mt-1">
         <div>        
         <a class="link-dark text-decoration-none" href="#" [routerLink]="['/user', miUser?._id]">
             <img src="/assets/search.svg" width="40" height="40">

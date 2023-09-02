@@ -15,10 +15,12 @@ export class UserCardComponent {
   @Input() miUser!: User | any;
 
   async deleteUser(id: string): Promise<void> {
-    alert(`¿Deseas borrar el ususario ${this.miUser.first_name} ${this.miUser.last_name}?`)
-    let response = await this.usersServices.delete(this.miUser._id)
-    if(response) {
+    let confirmar = confirm(`¿Deseas borrar el ususario ${this.miUser.first_name} ${this.miUser.last_name}?`)
+    if (confirmar == true){
+      let response = await this.usersServices.delete(this.miUser._id)
+      if(response) {
       alert('Usuario borrado correctamente')      
+    }
     }
   }
 }

@@ -24,11 +24,13 @@ export class DetailsComponent {
   }
 
   async deleteUser(id: string): Promise<void> {
-    alert(`¿Deseas borrar el ususario ${this.oneUser.first_name} ${this.oneUser.last_name}?`)
-    let response = await this.usersServices.delete(this.oneUser._id)
-    if(response) {
-      alert('Usuario borrado correctamente')
-      this.router.navigate(['/home'])
+    let confirmar = confirm(`¿Deseas borrar el ususario ${this.oneUser.first_name} ${this.oneUser.last_name}?`)
+    if (confirmar==true){
+      let response = await this.usersServices.delete(this.oneUser._id)
+        if(response) {
+        alert('Usuario borrado correctamente')
+        this.router.navigate(['/home'])
+        }
     }
   }
 

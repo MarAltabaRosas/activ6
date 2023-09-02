@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import { User } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -21,14 +22,14 @@ export class UsersService {
     return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}/${id}`))
   }
 
- /*  create(): Promise<any>{
-    return lastValueFrom(this.httpClient.post<any>(this.baseUrl))
-  } */
+  create(formValue: any): Promise<any>{
+    return lastValueFrom(this.httpClient.post<any>(this.baseUrl, formValue))
+  }
 
-/*   update(id: number): Promise<any>{
+ update(id: number, formValue: any): Promise<any>{
 
-    return lastValueFrom(this.httpClient.put)
-  } */
+    return lastValueFrom(this.httpClient.put<any>(`${this.baseUrl}/${id}`, formValue))
+  }
 
   delete(id: String): Promise<any>{
     return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}/${id}`))
