@@ -1,4 +1,3 @@
-<p>Valido:{{userForm.valid}}</p>
 <section class="container mt-3">
     <h2>Nuevo usuario</h2>
     <form [formGroup]="userForm" (ngSubmit)="getDataForm()">
@@ -31,6 +30,11 @@
             <input type="text" id="password" placeholder="Introduzca contraseña de usuario" class="form-control" formControlName="password">
             <p class="error" *ngIf="checkControl('password','required')">El campo es requerido</p>
             <p class="error" *ngIf="checkControl('password','pattern')">La contraseña debe tener entre 6 y 12 caracteres que comprendan letras y números</p>
+        </div>
+        <div>
+            <label for="image"></label>
+            <input type="text" id="image" placeholder="Introduzca url de la imagen de usuario" class="form-control" formControlName="image">
+            <p class="error" *ngIf="checkControl('image','required')">El campo es requerido</p>         
         </div>
 
     <input type="submit" class="btn btn-outline-dark mt-5" value="Guardar" [disabled]="!userForm.valid">

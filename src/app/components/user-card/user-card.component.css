@@ -1,0 +1,21 @@
+.buttons{
+    font-size: 14px;
+}
+
+.buttons-item:hover{
+    transform: scale(1.2);
+}
+
+@media(min-width: 992px){
+    .buttons{
+        padding: 0;
+        font-size: 12px;
+    } 
+}
+
+@media(min-width: 1200px){
+    .buttons{
+        padding: 2;
+        font-size: 14px;
+    } 
+}

@@ -3,7 +3,7 @@
     <img class="rounded-circle" src= {{oneUser?.image}} width="95%">
 </div>
 
-<div class="container border-dark border-3 border-start">
+<div class="ms-1 ps-5 border-3 border-dark border-start">
     <h2>{{oneUser?.first_name}}</h2>
     <h2>{{oneUser?.last_name}}</h2>
     <div class="d-flex">
@@ -15,10 +15,9 @@
         <p>{{oneUser?.email}}</p>
     </div>  
     <div class="mt-5">
-        <button class="btn btn-outline-dark p-3" (click)="deleteUser(oneUser?.id)">Eliminar</button>
-        <a class="btn btn-outline-dark p-3" [routerLink]="['/updateuser', oneUser?._id]">Actualizar</a>
-        <a class="btn btn-outline-dark p-3" [routerLink]="['/home']">Volver a listado</a>
+        <button class="btn btn-outline-dark ms-2 p-2" (click)="deleteUser(oneUser?.id)">Eliminar</button>
+        <a class="btn btn-outline-dark ms-2  p-2" [routerLink]="['/updateuser', oneUser?._id]">Actualizar</a>
+        <a class="btn btn-outline-dark ms-2 p-2" [routerLink]="['/home']">Volver a listado</a>
     </div> 
 </div>
-
 </section>

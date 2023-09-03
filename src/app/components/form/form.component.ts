@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -19,15 +19,15 @@ export class FormComponent {
     this.userForm = new FormGroup({
       first_name: new FormControl("", [
         Validators.required,
-        Validators.pattern(/^[A-Za-z]+$/)
+        Validators.pattern(/^[A-zÀ-ú]+$/)
       ]),
       last_name: new FormControl("", [
         Validators.required,
-        Validators.pattern(/^[A-Za-z]+$/)
+        Validators.pattern(/^[A-zÀ-ú\s]+$/)
       ]),
       email: new FormControl("", [
         Validators.required,
-        Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)
+        Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,6}$/)
       ]),
       username: new FormControl("", [
         Validators.required,
@@ -36,7 +36,11 @@ export class FormComponent {
       password: new FormControl("", [
         Validators.required,
         Validators.pattern(/^((?=\S*?[a-z])(?=\S*?[0-9]).{5,12})\S$/)
+      ]),
+      image: new FormControl("",[
+        Validators.required
       ])
+
     },[])
     
   }
@@ -50,15 +54,15 @@ export class FormComponent {
         _id: new FormControl(response._id,[]),
         first_name: new FormControl(response.first_name, [
           Validators.required,
-          Validators.pattern(/^[A-Za-z]+$/)
+          Validators.pattern(/^[A-zÀ-ú]+$/)
         ]),
         last_name: new FormControl(response.last_name, [
           Validators.required,
-          Validators.pattern(/^[A-Za-z]+$/)
+          Validators.pattern(/^[A-zÀ-ú\s]+$/)
         ]),
         email: new FormControl(response.email, [
           Validators.required,
-          Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)
+          Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,6}$/)
         ]),
         username: new FormControl(response.username, [
           Validators.required,
@@ -67,6 +71,9 @@ export class FormComponent {
         password: new FormControl(response.password, [
           Validators.required,
           Validators.pattern(/^((?=\S*?[a-z])(?=\S*?[0-9]).{5,12})\S$/)
+        ]),
+        image: new FormControl(response.image,[
+          Validators.required
         ])
       },[])
       })
