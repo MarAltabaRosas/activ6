@@ -26,9 +26,9 @@ export class UsersService {
     return lastValueFrom(this.httpClient.post<any>(this.baseUrl, formValue))
   }
 
- update(id: number, formValue: any): Promise<any>{
+ update(formValue: any): Promise<any>{
 
-    return lastValueFrom(this.httpClient.put<any>(`${this.baseUrl}/${id}`, formValue))
+    return lastValueFrom(this.httpClient.put<any>(`${this.baseUrl}/${formValue._id}`, formValue))
   }
 
   delete(id: String): Promise<any>{

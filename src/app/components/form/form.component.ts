@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -17,11 +17,26 @@ export class FormComponent {
 
   constructor(){
     this.userForm = new FormGroup({
-      first_name: new FormControl("", []),
-      last_name: new FormControl("", []),
-      email: new FormControl("", []),
-      username: new FormControl("", []),
-      password: new FormControl("", [])
+      first_name: new FormControl("", [
+        Validators.required,
+        Validators.pattern(/^[A-Za-z]+$/)
+      ]),
+      last_name: new FormControl("", [
+        Validators.required,
+        Validators.pattern(/^[A-Za-z]+$/)
+      ]),
+      email: new FormControl("", [
+        Validators.required,
+        Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)
+      ]),
+      username: new FormControl("", [
+        Validators.required,
+        Validators.minLength(5)
+      ]),
+      password: new FormControl("", [
+        Validators.required,
+        Validators.pattern(/^((?=\S*?[a-z])(?=\S*?[0-9]).{5,12})\S$/)
+      ])
     },[])
     
   }
@@ -33,11 +48,26 @@ export class FormComponent {
 
       this.userForm = new FormGroup({
         _id: new FormControl(response._id,[]),
-        first_name: new FormControl(response.first_name, []),
-        last_name: new FormControl(response.last_name, []),
-        email: new FormControl(response.email, []),
-        username: new FormControl(response.username, []),
-        password: new FormControl(response.password, [])
+        first_name: new FormControl(response.first_name, [
+          Validators.required,
+          Validators.pattern(/^[A-Za-z]+$/)
+        ]),
+        last_name: new FormControl(response.last_name, [
+          Validators.required,
+          Validators.pattern(/^[A-Za-z]+$/)
+        ]),
+        email: new FormControl(response.email, [
+          Validators.required,
+          Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)
+        ]),
+        username: new FormControl(response.username, [
+          Validators.required,
+          Validators.minLength(5)
+        ]),
+        password: new FormControl(response.password, [
+          Validators.required,
+          Validators.pattern(/^((?=\S*?[a-z])(?=\S*?[0-9]).{5,12})\S$/)
+        ])
       },[])
       })
   }
@@ -45,7 +75,7 @@ export class FormComponent {
   async getDataForm(): Promise<void> {
     
     if(this.userForm.value._id){
-      let response = await this.userService.update(this.userForm.value._id, this.userForm.value);
+      let response = await this.userService.update(this.userForm.value);
       console.log(response)
       if(response.id){
         alert("Usuario actualizado correctamente")
@@ -62,8 +92,10 @@ export class FormComponent {
         }else{
           alert("Se ha producido un error, usuario no creado")
         }
-      }
-    
+      }    
   }
 
+  checkControl(formcontrolName: string, validator: string): boolean | undefined{
+    return this.userForm.get(formcontrolName)?.hasError(validator) && this.userForm.get(formcontrolName)?.touched
+  }
 }
